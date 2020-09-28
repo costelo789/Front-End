@@ -1,13 +1,24 @@
+/**
+ * Declaring a provider to wrap the application to establish connection to Redux store for components  
+ * @version 1.0.0
+ * @author [Phat Tran Hong Dai](https://github.com/sapegin)
+ * Vietnamese-German University
+ * Year:2020
+ */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { Provider } from "react-redux"
+import createReduxStore from "./store"
+import createReducerStore from './store';
 
+const store = createReducerStore(window.__INITIAL_STATE__)
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
 
