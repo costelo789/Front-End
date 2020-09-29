@@ -7,7 +7,7 @@
  * Year:2020
  */
 
- //``` Importing action type which is declared in actions.js file
+//``` Importing action type which is declared in actions.js file
 import {
     MAIN_DATA,
     SUCCESS,

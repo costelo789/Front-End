@@ -13,9 +13,9 @@ import { actionHandlers } from "./handler"
 //```Defining initial data for each state in Redux 
 const initialState = {
     mainData: [],
-    bedRoomData:[],
-    kitchenData:[],
-    livingRoomData:[],
+    bedRoomData: [],
+    kitchenData: [],
+    livingRoomData: [],
 }
 
 //```Creating a reducer for updating state

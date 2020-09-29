@@ -10,14 +10,13 @@ import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import { useState, useEffect } from 'react';
 import { connect } from 'react-redux'
-import { getLivingRoomData,feedbackServer } from "../../modules/actions"
+import { getLivingRoomData, feedbackServer } from "../../modules/actions"
 
 
 function AlertLivingRoom(props) {
-  //const {roomData,showModal}=props
-  const { living, getLivingRoomData,feedbackServer } = props
+  const { living, getLivingRoomData, feedbackServer } = props
   const [show, setShow] = useState()
-  
+
   //``` Execute function to load data from API
   useEffect(() => {
     const interval = setInterval(() => {
@@ -29,16 +28,16 @@ function AlertLivingRoom(props) {
   //``` Display alert if temperature and smoke value is high
   useEffect(() => {
     if (Object.values(living) != null) {
-      if (Object.values(living)[1] > 32 || Object.values(living)[0] > 32) {
+      if (Object.values(living)[1] > 35 || Object.values(living)[0] > 80) {
         setShow(true)
       }
     }
   }, [living])
- 
+
   const handleCancel = (living) => {
     const data = {
       temperature: parseInt(Object.values(living)[1]),
-      smoke:parseInt(Object.values(living)[0]),
+      smoke: parseInt(Object.values(living)[0]),
       status: "False"
     };
     feedbackServer(data)
@@ -49,7 +48,7 @@ function AlertLivingRoom(props) {
   const handleConfirm = (living) => {
     const data = {
       temperature: parseInt(Object.values(living)[1]),
-      smoke:parseInt(Object.values(living)[0]),
+      smoke: parseInt(Object.values(living)[0]),
       status: "True"
     };
     feedbackServer(data)

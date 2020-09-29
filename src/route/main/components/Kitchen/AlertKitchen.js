@@ -11,15 +11,12 @@ import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import { useState, useEffect } from 'react';
 import { connect } from 'react-redux'
-import { getPercentageKitchenData,feedbackServer } from "../../modules/actions"
+import { getPercentageKitchenData, feedbackServer, data } from "../../modules/actions"
 
 
 function AlertKitchen(props) {
-  //const {roomData,showModal}=props
-  const { percentageKitchen, getPercentageKitchenData,feedbackServer } = props
+  const { percentageKitchen, getPercentageKitchenData, feedbackServer, data } = props
   const [show, setShow] = useState()
-  var hours = new Date().getHours();
-  var minutes = new Date().getMinutes();
 
   //``` Load data by calliing Redux function to handle API call
   useEffect(() => {
@@ -37,26 +34,27 @@ function AlertKitchen(props) {
     }
   }, [percentageKitchen])
 
-  const handleCancel = (kitchen) => {
-    const data = {
-      temperature: parseInt(Object.values(kitchen)[1]),
-      smoke:parseInt(Object.values(kitchen)[0]),
+  const handleCancel = (data) => {
+    const obj = {
+      temperature: parseInt(Object.values(data)[1]),
+      smoke: parseInt(Object.values(data)[0]),
       status: "False"
     };
-    feedbackServer(data)
+    feedbackServer(obj)
     setShow(false)
   }
 
 
-  const handleConfirm = (kitchen) => {
-    const data = {
-      temperature: parseInt(Object.values(kitchen)[1]),
-      smoke:parseInt(Object.values(kitchen)[0]),
+  const handleConfirm = (data) => {
+    const obj = {
+      temperature: parseInt(Object.values(data)[1]),
+      smoke: parseInt(Object.values(data)[0]),
       status: "True"
     };
-    feedbackServer(data)
+    feedbackServer(obj)
     setShow(false)
   }
+  
   return (
     <Modal
       show={show}

@@ -6,9 +6,9 @@ import AlertKitchen from './AlertKitchen';
 export default function Kitchen() {
     return (
         <div>
-            <Temperature/>
-            <Smoke/>
-            <AlertKitchen/>
+            <Temperature />
+            <Smoke />
+            <AlertKitchen />
         </div>
 
     )

@@ -16,43 +16,43 @@ import "../style.css"
 
 
 function LivingRoomDetail(props) {
-    
-    const { living, getLivingRoomData } = props 
+
+    const { living, getLivingRoomData } = props
     var hours = new Date().getHours();
     var minutes = new Date().getMinutes();
 
     //``` Load data by calliing Redux function to handle API call
-    useEffect(()=>{
+    useEffect(() => {
         const interval = setInterval(() => {
             getLivingRoomData()
-          }, 5000);
-          return () => clearInterval(interval);
-      },[])
+        }, 5000);
+        return () => clearInterval(interval);
+    }, [])
 
 
     return (
         <div className="row" style={{ display: "flex", justifyContent: "space-between" }} >
-            <PercentageLivingRoom/>
-        <div style={{ width: "100%", paddingLeft: "20rem", maxHeight: "50rem",width:"45rem"}}>
-            <h1 style={{ textAlign: "center" }} >Status</h1>
-            <div className="border">
+            <PercentageLivingRoom />
+            <div style={{ width: "100%", paddingLeft: "20rem", maxHeight: "50rem", width: "45rem" }}>
+                <h1 style={{ textAlign: "center" }} >Status</h1>
+                <div className="border">
                     <div>
-                    <div className="p_style">
-                    <p>Temperature</p>
-                    <p>{Object.values(living)[1]}</p>
+                        <div className="p_style">
+                            <p>Temperature</p>
+                            <p>{Object.values(living)[1]}</p>
+                        </div>
+                        <div className="p_style">
+                            <p>Smoke Density</p>
+                            <p>{Object.values(living)[0]}</p>
+                        </div>
+                        <div className="p_style">
+                            <p>Local Time</p>
+                            <p>{hours}:{minutes}</p>
+                        </div>
+                    </div>
+                    <AlertLivingRoom data={living} />
                 </div>
-                <div className="p_style">
-                    <p>Smoke Density</p>
-                    <p>{Object.values(living)[0]}</p>
-                </div>
-                <div className="p_style">
-                    <p>Local Time</p>
-                    <p>{hours}:{minutes}</p>
-                </div>
-                </div>
-                <AlertLivingRoom/>
             </div>
-        </div>
         </div>
     )
 }
@@ -60,7 +60,7 @@ function LivingRoomDetail(props) {
 //``` Connect to Redux store and retrive the state
 const mapStateToProps = ({ mainData }) => {
     return {
-        living:mainData.livingRoomData
+        living: mainData.livingRoomData
     }
 }
 

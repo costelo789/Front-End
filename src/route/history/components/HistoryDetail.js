@@ -30,17 +30,16 @@ function HistoryDetail() {
       </div>
       <div className="row" style={{ display: "flex", flexDirection: "row" }}>
         <div style={{ width: "50%" }}>
-         <BarChart/>
+          <BarChart />
         </div>
 
         <div style={{ width: "50%", margin: "0%" }}>
           <PieChart />
         </div>
       </div>
-     <HistoryTable/>       
+      <HistoryTable />
     </div>
   )
 }
-
 
 export default HistoryDetail;

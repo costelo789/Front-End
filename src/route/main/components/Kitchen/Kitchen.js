@@ -16,49 +16,49 @@ import "../style.css"
 
 
 function KitchenDetail(props) {
-    
-    const { kitchen, getKitchenData } = props 
+
+    const { kitchen, getKitchenData } = props
     var hours = new Date().getHours();
     var minutes = new Date().getMinutes();
 
     //``` Load data by calliing Redux function to handle API call
-    useEffect(()=>{
+    useEffect(() => {
         const interval = setInterval(() => {
             getKitchenData()
-          }, 5000);
-          return () => clearInterval(interval);
-      },[])
+        }, 5000);
+        return () => clearInterval(interval);
+    }, [])
 
     return (
         <div className="row" style={{ display: "flex", justifyContent: "space-between" }} >
-        <PercentageKitchen/>
-        <div style={{ width: "100%", paddingLeft: "20rem", maxHeight: "50rem", width: "45rem" }}>
-            <h1 style={{ textAlign: "center" }} >Status</h1>
-            <div className="border">
+            <PercentageKitchen />
+            <div style={{ width: "100%", paddingLeft: "20rem", maxHeight: "50rem", width: "45rem" }}>
+                <h1 style={{ textAlign: "center" }} >Status</h1>
+                <div className="border">
                     <div>
-                    <div className="p_style">
-                    <p>Temperature</p>
-                    <p>{Object.values(kitchen)[1]}</p>
+                        <div className="p_style">
+                            <p>Temperature</p>
+                            <p>{Object.values(kitchen)[1]}</p>
+                        </div>
+                        <div className="p_style">
+                            <p>Smoke Density</p>
+                            <p>{Object.values(kitchen)[0]}</p>
+                        </div>
+                        <div className="p_style">
+                            <p>Local Time</p>
+                            <p>{hours}:{minutes}</p>
+                        </div>
+                    </div>
+                    <AlertKitchen data={kitchen} />
                 </div>
-                <div className="p_style">
-                    <p>Smoke Density</p>
-                    <p>{Object.values(kitchen)[0]}</p>
-                </div>
-                <div className="p_style">
-                    <p>Local Time</p>
-                    <p>{hours}:{minutes}</p>
-                </div>
-                </div>
-                <AlertKitchen/>
             </div>
-        </div>
         </div>
     )
 }
 //``` Connect to Redux store and retrive the state
 const mapStateToProps = ({ mainData }) => {
     return {
-        kitchen:mainData.kitchenData
+        kitchen: mainData.kitchenData
     }
 }
 

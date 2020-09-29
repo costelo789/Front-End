@@ -6,9 +6,9 @@ import Temperature from './Temperature';
 export default function BedRoom() {
     return (
         <div>
-            <Temperature/>
-            <Smoke/>
-            <AlertBedRoom/>
+            <Temperature />
+            <Smoke />
+            <AlertBedRoom />
         </div>
 
     )

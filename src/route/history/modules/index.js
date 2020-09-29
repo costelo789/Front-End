@@ -12,7 +12,7 @@ import { actionHandlers } from "./handler"
 //```Defining initial data for each state in Redux 
 const initialState = {
     historyData: [],
-    
+
 }
 
 //```Creating a reducer for updating state

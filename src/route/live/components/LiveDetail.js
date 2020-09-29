@@ -33,38 +33,39 @@ function LiveDetail(props) {
 
   return (
     <div>
-  <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={room}
-          onChange={handleChange}
-         style={{
-           width: 100, left: '50%', marginLeft: -25}}
-        >
-          <MenuItem value={'BedRoom'}>BedRoom</MenuItem>
-          <MenuItem value={"Kitchen"}>Kitchen</MenuItem>
-          <MenuItem value={"Living_Room"}>Living_Room</MenuItem>
-        </Select>
-        <div>
+      <Select
+        labelId="demo-simple-select-label"
+        id="demo-simple-select"
+        value={room}
+        onChange={handleChange}
+        style={{
+          width: 100, left: '50%', marginLeft: -25
+        }}
+      >
+        <MenuItem value={'BedRoom'}>BedRoom</MenuItem>
+        <MenuItem value={"Kitchen"}>Kitchen</MenuItem>
+        <MenuItem value={"Living_Room"}>Living_Room</MenuItem>
+      </Select>
+      <div>
         {(() => {
-        if (room=="Kitchen") {
-          return (
-            <Kitchen/>
-          )
-        } else if (room=="BedRoom") {
-          return (
-            <BedRoom/>
-          )
-        } else {
-          return (
-            <LivingRoom/>
-          )
-        }
-      })()}
-        </div>
+          if (room == "Kitchen") {
+            return (
+              <Kitchen />
+            )
+          } else if (room == "BedRoom") {
+            return (
+              <BedRoom />
+            )
+          } else {
+            return (
+              <LivingRoom />
+            )
+          }
+        })()}
+      </div>
     </div>
-    );
+  );
 
-    
+
 }
 export default LiveDetail;

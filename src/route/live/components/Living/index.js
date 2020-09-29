@@ -6,9 +6,9 @@ import AlertLivingRoom from './AlertLivingRoom';
 export default function LivingRoom() {
     return (
         <div>
-            <Temperature/>
-            <Smoke/>
-            <AlertLivingRoom/>
+            <Temperature />
+            <Smoke />
+            <AlertLivingRoom />
         </div>
 
     )

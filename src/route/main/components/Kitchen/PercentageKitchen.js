@@ -48,7 +48,7 @@ function PercentageKitchen(props) {
                         <div>
                             <CircularProgressbarWithChildren value={percentageKitchen || 0} styles={buildStyles({ pathColor: "green" })}>
                                 <strong style={{ fontSize: 40, marginTop: -5, color: "green" }}>{percentageKitchen}%</strong>
-                                <div><p style={{ color: "green" ,fontSize:40}}>Normal</p></div>
+                                <div><p style={{ color: "green", fontSize: 40 }}>Normal</p></div>
                             </CircularProgressbarWithChildren >
                         </div>)
 
@@ -57,8 +57,8 @@ function PercentageKitchen(props) {
                     return (
                         <div>
                             <CircularProgressbarWithChildren value={percentageKitchen || 0} styles={buildStyles({ pathColor: "red" })}>
-                                <strong style={{ fontSize: 40, marginTop: -5, color: "red" }}>{percentageKitchen||0}%</strong>
-                                <div><p style={{ color: "red" ,fontSize:40 }}>Danger</p></div>
+                                <strong style={{ fontSize: 40, marginTop: -5, color: "red" }}>{percentageKitchen || 0}%</strong>
+                                <div><p style={{ color: "red", fontSize: 40 }}>Danger</p></div>
                             </CircularProgressbarWithChildren >
                         </div>)
                 }

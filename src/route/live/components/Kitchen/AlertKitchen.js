@@ -10,12 +10,11 @@ import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import { useState, useEffect } from 'react';
 import { connect } from 'react-redux'
-import { getKitchenData,feedbackServer } from "../../modules/actions"
+import { getKitchenData, feedbackServer } from "../../modules/actions"
 
 
 function AlertKitchen(props) {
-  //const {roomData,showModal}=props
-  const { kitchen, getKitchenData,feedbackServer } = props
+  const { kitchen, getKitchenData, feedbackServer } = props
   const [show, setShow] = useState()
 
   //``` Execute function to load data from API
@@ -29,7 +28,7 @@ function AlertKitchen(props) {
   //``` Display alert if temperature and smoke value is high
   useEffect(() => {
     if (Object.values(kitchen) != "undefined") {
-      if (Object.values(kitchen)[1] > 80 || Object.values(kitchen)[0] > 80) {
+      if (Object.values(kitchen)[1] > 50 || Object.values(kitchen)[0] > 90) {
         setShow(true)
       }
     }
@@ -37,7 +36,7 @@ function AlertKitchen(props) {
   const handleCancel = (kitchen) => {
     const data = {
       temperature: parseInt(Object.values(kitchen)[1]),
-      smoke:parseInt(Object.values(kitchen)[0]),
+      smoke: parseInt(Object.values(kitchen)[0]),
       status: "False"
     };
     feedbackServer(data)
@@ -48,7 +47,7 @@ function AlertKitchen(props) {
   const handleConfirm = (kitchen) => {
     const data = {
       temperature: parseInt(Object.values(kitchen)[1]),
-      smoke:parseInt(Object.values(kitchen)[0]),
+      smoke: parseInt(Object.values(kitchen)[0]),
       status: "True"
     };
     feedbackServer(data)

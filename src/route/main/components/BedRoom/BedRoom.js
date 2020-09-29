@@ -18,7 +18,6 @@ import PercentageBedRoom from './PercentageBedRoom';
 function BedRoomDetail(props) {
 
     const { bedRoom, getBedRoomData } = props
-    const [showModal, setShowModal] = useState("Fasle")
     var hours = new Date().getHours();
     var minutes = new Date().getMinutes();
 
@@ -50,7 +49,7 @@ function BedRoomDetail(props) {
                             <p>{hours}:{minutes}</p>
                         </div>
                     </div>
-                    <AlertBedRoom />
+                    <AlertBedRoom data={bedRoom} />
                 </div>
             </div>
         </div>

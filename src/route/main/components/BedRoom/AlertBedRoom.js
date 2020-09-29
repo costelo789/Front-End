@@ -12,12 +12,11 @@ import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import { useState, useEffect } from 'react';
 import { connect } from 'react-redux'
-import { getPercentageBedRoomData,feedbackServer } from "../../modules/actions"
+import { getPercentageBedRoomData, feedbackServer } from "../../modules/actions"
 
 
 function AlertBedRoom(props) {
-  //const {roomData,showModal}=props
-  const { percentageBedRoom, getPercentageBedRoomData,feedbackServer } = props
+  const { percentageBedRoom, getPercentageBedRoomData, feedbackServer, data } = props
   const [show, setShow] = useState()
   console.log(show, percentageBedRoom)
 
@@ -36,24 +35,24 @@ function AlertBedRoom(props) {
       }
     }
   }, [percentageBedRoom])
-  const handleCancel = (bedroom) => {
-    const data = {
-      temperature: parseInt(Object.values(bedroom)[1]),
-      smoke:parseInt(Object.values(bedroom)[0]),
+  const handleCancel = (data) => {
+    const obj = {
+      temperature: parseInt(Object.values(data)[1]),
+      smoke: parseInt(Object.values(data)[0]),
       status: "False"
     };
-    feedbackServer(data)
+    feedbackServer(obj)
     setShow(false)
   }
 
 
-  const handleConfirm = (bedroom) => {
-    const data = {
-      temperature: parseInt(Object.values(bedroom)[1]),
-      smoke:parseInt(Object.values(bedroom)[0]),
+  const handleConfirm = (data) => {
+    const obj = {
+      temperature: parseInt(Object.values(data)[1]),
+      smoke: parseInt(Object.values(data)[0]),
       status: "True"
     };
-    feedbackServer(data)
+    feedbackServer(obj)
     setShow(false)
   }
   return (

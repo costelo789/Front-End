@@ -6,12 +6,12 @@
  * Year:2020
  */
 import React from "react";
-import { Line,Chart } from "react-chartjs-2";
+import { Line, Chart } from "react-chartjs-2";
 import * as ChartAnnotation from 'chartjs-plugin-annotation';
 import { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { useAlert } from 'react-alert'
-import {getLivingRoomData} from '../../modules/actions'
+import { getLivingRoomData } from '../../modules/actions'
 
 
 
@@ -19,68 +19,57 @@ Chart.plugins.register([ChartAnnotation]); // Global
 
 function Temperature(props) {
   const { temperature, getLivingRoomData } = props
-  const [temperatureData,setTemperatureData]=useState([60])
-  const [labels,setlabels]=useState([0])
-  const[temp,setTemp]=useState(0)
+  const [temperatureData, setTemperatureData] = useState([60])
+  const [labels, setlabels] = useState([0])
+  const [temp, setTemp] = useState(0)
 
   //``` Execute function to load data from API
-  useEffect(()=>{
+  useEffect(() => {
     const interval = setInterval(() => {
       getLivingRoomData()
       console.log("API is fetched")
       setTemp(temp => temp + 60);
-    }, 20000);
+    }, 5000);
     return () => clearInterval(interval);
-    
-  },[])
+
+  }, [])
 
   //``` Assign data from API to chart
-  useEffect(()=>{
-    if(typeof(temperature) !== 'undefined'){
-      if(Object.values(temperature)[0]!= undefined){
-        setTemperatureData([...temperatureData,Object.values(temperature)[0]])
-        
+  useEffect(() => {
+    if (typeof (temperature) !== 'undefined') {
+      if (Object.values(temperature)[0] != undefined) {
+        setTemperatureData([...temperatureData, Object.values(temperature)[0]])
+
+      }
+      labels.map(item => {
+        if (item !== temp) {
+          setlabels([...labels, temp])
         }
-        labels.map(item=>{
-          if(item!== temp){
-            setlabels([...labels,temp])
-          }
-        })
-              
-  }
-  },[temp])
+      })
 
-  // useEffect(()=>{
-  //   console.log(Object.values(datas))
-  // },[])
-// if(Object.values(temperature)[0]>=10){
-//   console.log("true")
-//   return(
-//     <div>This is a texs</div>
-//   )
-  
-// }
+    }
+  }, [temp])
 
- const data = {
-        labels: labels,
-        datasets: [
-          {
-            label: "Temperatute",
-            data: temperatureData,
-            fill: true,
-            backgroundColor: "rgba(75,192,192,0.2)",
-            borderColor: "rgba(75,192,192,1)"
-          },
-        ]
-      };
+  const data = {
+    labels: labels,
+    datasets: [
+      {
+        label: "Temperatute",
+        data: temperatureData,
+        fill: true,
+        backgroundColor: "rgba(75,192,192,0.2)",
+        borderColor: "rgba(75,192,192,1)"
+      },
+    ]
+  };
 
-      return(
-       <div>
-        <Line data={data}
+  return (
+    <div>
+      <Line data={data}
         height={80}
         options={{
           annotation: {
-            annotations: [ {
+            annotations: [{
               id: 'hline3',
               type: 'line',
               mode: 'horizontal',
@@ -89,46 +78,46 @@ function Temperature(props) {
               borderColor: 'red',
               borderWidth: 1,
               label: {
-                 backgroundColor: "red",
-                 content: "Danger",
-                 enabled: true
+                backgroundColor: "red",
+                content: "Danger",
+                enabled: true
               }
-           }, ]
+            },]
           },
           scales: {
             yAxes: [
-                {
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'C'
-                      }
-                },
-                
+              {
+                scaleLabel: {
+                  display: true,
+                  labelString: 'C'
+                }
+              },
+
             ],
             xAxes: [
               {
-                  scaleLabel: {
-                      display: true,
-                      labelString: 'Time'
-                    }
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Time'
+                }
               },
-              
-          ]
-        },
+
+            ]
+          },
         }
-        
+
         } />
-        </div>
+    </div>
 
 
-      )
+  )
 }
 
 
 //``` Connect to Redux store and retrive the state
 const mapStateToProps = ({ liveData }) => {
   return {
-      temperature:liveData.livingRoomData
+    temperature: liveData.livingRoomData
   }
 }
 

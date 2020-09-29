@@ -1,4 +1,4 @@
 import PublicTemplateRoute from "./public"
-export{
+export {
     PublicTemplateRoute,
 }

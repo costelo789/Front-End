@@ -10,26 +10,25 @@ import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import { useState, useEffect } from 'react';
 import { connect } from 'react-redux'
-import { getBedRoomData,feedbackServer } from "../../modules/actions"
+import { getBedRoomData, feedbackServer } from "../../modules/actions"
 
 
 function AlertBedRoom(props) {
-  const { bedRoom, getBedRoomData,feedbackServer } = props
+  const { bedRoom, getBedRoomData, feedbackServer } = props
   const [show, setShow] = useState()
-  
+
 
   //``` Load data by calliing Redux function to handle API call
-  useEffect(()=>{
+  useEffect(() => {
     const interval = setInterval(() => {
       getBedRoomData()
-    }, 20000);
+    }, 5000);
     return () => clearInterval(interval);
-    
-  },[])
+  }, [])
 
   useEffect(() => {
     if (Object.values(bedRoom) != null) {
-      if (Object.values(bedRoom)[0] > 80) {
+      if (Object.values(bedRoom)[0] > 80 || Object.values(bedRoom)[0] > 35) {
         setShow(true)
       }
     }
@@ -37,7 +36,7 @@ function AlertBedRoom(props) {
   const handleCancel = (bedroom) => {
     const data = {
       temperature: parseInt(Object.values(bedroom)[1]),
-      smoke:parseInt(Object.values(bedroom)[0]),
+      smoke: parseInt(Object.values(bedroom)[0]),
       status: "False"
     };
     feedbackServer(data)
@@ -47,7 +46,7 @@ function AlertBedRoom(props) {
   const handleConfirm = (bedroom) => {
     const data = {
       temperature: parseInt(Object.values(bedroom)[1]),
-      smoke:parseInt(Object.values(bedroom)[0]),
+      smoke: parseInt(Object.values(bedroom)[0]),
       status: "True"
     };
     feedbackServer(data)

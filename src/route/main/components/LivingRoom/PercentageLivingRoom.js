@@ -57,7 +57,7 @@ function PercentageLivingRoom(props) {
                         <div>
                             <CircularProgressbarWithChildren value={percentageLivingRoom || 0} styles={buildStyles({ pathColor: "red" })}>
                                 <strong style={{ fontSize: 40, marginTop: -5, color: "red" }}>{percentageLivingRoom}%</strong>
-                                <div><p style={{ color: "red", fontSize:40 }}>Danger</p></div>
+                                <div><p style={{ color: "red", fontSize: 40 }}>Danger</p></div>
                             </CircularProgressbarWithChildren >
                         </div>)
                 }

@@ -11,12 +11,11 @@ import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import { useState, useEffect } from 'react';
 import { connect } from 'react-redux'
-import { getPercentageLivingRoomData,feedbackServer } from "../../modules/actions"
+import { getPercentageLivingRoomData, feedbackServer } from "../../modules/actions"
 
 
 function AlertLivingRoom(props) {
-  //const {roomData,showModal}=props
-  const { percentageLivingRoom, getPercentageLivingRoomData,feedbackServer } = props
+  const { percentageLivingRoom, getPercentageLivingRoomData, feedbackServer, data } = props
   const [show, setShow] = useState()
 
   //``` Load data by calliing Redux function to handle API call
@@ -26,32 +25,32 @@ function AlertLivingRoom(props) {
     }, 5000);
     return () => clearInterval(interval);
   }, [])
-
+  console.log(data)
   useEffect(() => {
-    if (percentageLivingRoom != null) {
+    if (percentageLivingRoom == null) {
       if (percentageLivingRoom > 80) {
         setShow(true)
       }
     }
   }, [percentageLivingRoom])
-  const handleCancel = (living) => {
-    const data = {
-      temperature: parseInt(Object.values(living)[1]),
-      smoke:parseInt(Object.values(living)[0]),
+  const handleCancel = (data) => {
+    const obj = {
+      temperature: parseInt(Object.values(data)[1]),
+      smoke: parseInt(Object.values(data)[0]),
       status: "False"
     };
-    feedbackServer(data)
+    feedbackServer(obj)
     setShow(false)
   }
 
 
-  const handleConfirm = (living) => {
-    const data = {
-      temperature: parseInt(Object.values(living)[1]),
-      smoke:parseInt(Object.values(living)[0]),
+  const handleConfirm = (data) => {
+    const obj = {
+      temperature: parseInt(Object.values(data)[1]),
+      smoke: parseInt(Object.values(data)[0]),
       status: "True"
     };
-    feedbackServer(data)
+    feedbackServer(obj)
     setShow(false)
   }
   return (
