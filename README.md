@@ -10,6 +10,7 @@ Hong Dai Phat Tran - [GitHub](https://github.com/costelo789), [LinkedIn](https:/
 Requirements
 ------------
 Node.js and npm is required to install and run this application. The instructions can be founded on this [page](https://www.liquidweb.com/kb/install-react-js-windows/) 
+An Android emulator is required to test the application. The instructions can be founded on this [page](https://www.tutorialspoint.com/react_native/react_native_environment_setup.htm)
 
 In the project directory, you can run:
 
@@ -17,11 +18,8 @@ In the project directory, you can run:
 
 The app will automatically install all the required libraries
 
-### `npm start`
+### `react-native run-android`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:5000](http://localhost:5000) to view it in the browser.
+Runs the app on an emulator.<br />
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
 
